@@ -280,46 +280,6 @@ class JoyCon extends EventTarget {
   }
 
   /**
-   * set LED state.
-   *
-   * @memberof JoyCon
-   */
-   async setLEDState(n) {
-    const NO_RUMBLE = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
-    const subcommand = [0x30, n];
-    await this.device.sendReport(0x01, new Uint8Array([...NO_RUMBLE, 0, ...subcommand]));
-  }
-
-  /**
-   * set LED.
-   *
-   * @memberof JoyCon
-   */
-   async setLED(n) {
-    this.ledstate |= 1 << n;
-    await this.setLEDState(this.ledstate);
-  }
-  /**
-   * reset LED.
-   *
-   * @memberof JoyCon
-   */
-   async resetLED(n) {
-    this.ledstate &= ~((1 << n) | (1 << (4 + n)));
-    await this.setLEDState(this.ledstate);
-  }
-  /**
-   * blink LED.
-   *
-   * @memberof JoyCon
-   */
-   async blinkLED(n) {
-    this.ledstate &= ~(1 << n);
-    this.ledstate |= 1 << (4 + n);
-    await this.setLEDState(this.ledstate);
-  }
-
-  /**
    * Send a rumble signal to Joy-Con.
    *
    * @param {number} lowFrequency
@@ -379,6 +339,48 @@ class JoyCon extends EventTarget {
     }
 
     await this.device.sendReport(outputReportID, new Uint8Array(data));
+  }
+
+  /**
+   * set LED state.
+   *
+   * @memberof JoyCon
+   */
+   async setLEDState(n) {
+    const NO_RUMBLE = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
+    const subcommand = [0x30, n];
+    await this.device.sendReport(0x01, new Uint8Array([...NO_RUMBLE, 0, ...subcommand]));
+  }
+
+  /**
+   * set LED.
+   *
+   * @memberof JoyCon
+   */
+   async setLED(n) {
+    this.ledstate |= 1 << n;
+    await this.setLEDState(this.ledstate);
+  }
+  
+  /**
+   * reset LED.
+   *
+   * @memberof JoyCon
+   */
+   async resetLED(n) {
+    this.ledstate &= ~((1 << n) | (1 << (4 + n)));
+    await this.setLEDState(this.ledstate);
+  }
+
+  /**
+   * blink LED.
+   *
+   * @memberof JoyCon
+   */
+   async blinkLED(n) {
+    this.ledstate &= ~(1 << n);
+    this.ledstate |= 1 << (4 + n);
+    await this.setLEDState(this.ledstate);
   }
 
   /**
