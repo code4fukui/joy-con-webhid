@@ -29,8 +29,12 @@ const connectJoyCon = async () => {
     },
     {
       vendorId: 0x057e, // Nintendo Co., Ltd
-      productId: 0x2007, // Joy-Con Right
+      productId: 0x2007, // Joy-Con Right, HVC Controller
     },
+    {
+      vendorId: 0x057e, // Nintendo Co., Ltd
+      productId: 0x2017, // SNES Controller
+    }
   ];
   // Prompt user to select a Joy-Con device.
   try {
@@ -54,6 +58,8 @@ const connectDevice = async (device) => {
     } else {
       joyCon = new JoyConRight(device);
     }
+  } else if (device.productId === 0x2017) {
+    joyCon = new HVCController(device);
   }
   await joyCon.open();
   await joyCon.enableStandardFullMode();
