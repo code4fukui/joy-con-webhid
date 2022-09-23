@@ -58,6 +58,38 @@ const ControllerType = {
   0x3: 'Pro Controller',
 };
 
+const lastValues = {
+  8198: {
+    timestamp: null,
+    alpha: 0,
+    beta: 0,
+    gamma: 0,
+  },
+  8199: {
+    timestamp: null,
+    alpha: 0,
+    beta: 0,
+    gamma: 0,
+  },
+  0x2009: {
+    timestamp: null,
+    alpha: 0,
+    beta: 0,
+    gamma: 0,
+  },
+  0x2017: {
+    timestamp: null,
+    alpha: 0,
+    beta: 0,
+    gamma: 0,
+  },
+  0x2019: {
+    timestamp: null,
+    alpha: 0,
+    beta: 0,
+    gamma: 0,
+  }
+};
 const bias = 0.75;
 const zeroBias = 0.0125;
 
