@@ -138,6 +138,20 @@ const visualize = (joyCon, packet) => {
     document.querySelector('#rc-st').value = ringCon.strain;
   }
 
+  if (buttons.a || buttons.up) {
+    joyCon.blinkLED(0);
+  }
+  if (buttons.b || buttons.down) {
+    joyCon.setLED(0);
+  }
+  if (buttons.x || buttons.right) {
+    joyCon.resetLED(0);
+  }
+  if (buttons.y || buttons.left) {
+    //joyCon.setLED(1);
+    joyCon.rumble(600, 600, 0.5);
+  }
+
   if (showDebug.checked) {
     const controller = joyCon instanceof JoyConLeft ? debugLeft : debugRight;
     controller.querySelector('pre').textContent =

@@ -35,7 +35,7 @@ const connectJoyCon = async () => {
     },
     {
       vendorId: 0x057e, // Nintendo Co., Ltd
-      productId: 0x2007, // Joy-Con Right
+      productId: 0x2007, // Joy-Con Right, HVC Controller
     },
     {
       vendorId: 0x057e, // Nintendo Co., Ltd
@@ -71,6 +71,8 @@ const connectDevice = async (device) => {
     if (device.productName.startsWith('Joy-Con (R)')) {
       joyCon = new JoyConRight(device);
     }
+  } else if (device.productId === 0x2017) {
+    joyCon = new HVCController(device);
   }
   if (!joyCon) {
     //console.log(device.productId.toString(16), device.productName);
