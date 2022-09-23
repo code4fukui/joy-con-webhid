@@ -356,16 +356,18 @@ class JoyCon extends EventTarget {
    * set LED.
    *
    * @memberof JoyCon
+   * @param n position(0-3)
    */
    async setLED(n) {
     this.ledstate |= 1 << n;
     await this.setLEDState(this.ledstate);
   }
-  
+
   /**
    * reset LED.
    *
    * @memberof JoyCon
+   * @param n position(0-3)
    */
    async resetLED(n) {
     this.ledstate &= ~((1 << n) | (1 << (4 + n)));
@@ -376,6 +378,7 @@ class JoyCon extends EventTarget {
    * blink LED.
    *
    * @memberof JoyCon
+   * @param n position(0-3)
    */
    async blinkLED(n) {
     this.ledstate &= ~(1 << n);
