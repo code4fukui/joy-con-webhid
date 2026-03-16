@@ -4,10 +4,6 @@
 
 A [WebHID](https://web.dev/hid) driver for [Nintendo Joy-Cons](https://en.wikipedia.org/wiki/Joy-Con) with support for all buttons, analog sticks, and the device's gyroscope and accelerometer sensors.
 
-## Demo
-
-See the [live demo](https://tomayac.github.io/joy-con-webhid/demo/) of the driver.
-
 ## Features
 
 - Support for all Joy-Con buttons, analog sticks, gyroscope, and accelerometer
